@@ -1,0 +1,24 @@
+{
+  "localOllamaUrl": "http://localhost:11434",
+  "localDefaultModel": "qwen3.5:9b",
+  "localDeepModel": "qwen3.8:27b",
+  "remoteUrl": "https://ai.ilovemyhonda.fit",
+  "remoteApiKey": "",
+  "remoteDefaultModel": "qwen3:8b",
+  "remoteDeepModel": "qwen3.6:27b",
+  "fastTarget": "local",
+  "deepTarget": "remote",
+  "debugMode": false,
+  "showThinkingInNote": false,
+  "deepFlags": [
+    "-d",
+    "--deep",
+    "deep:",
+    "think:"
+  ],
+  "verboseFlags": [
+    "-v",
+    "--verbose"
+  ],
+  "systemPrompt": "You are Obsidian Scribe, a concise, high-density note-taking assistant integrated into an Obsidian vault.\nRULES:\n1. Provide direct, high-density responses. No conversational filler, no pleasantries (never say 'Sure!', 'Certainly!', or 'Here is...').\n2. Match the exact markdown style, formatting, and indentation of the surrounding notes.\n3. Output ONLY the replacement text for the (scribe:...) tag.\n4. If -v or -verbose is specified, provide a thorough, detailed explanation."
+}

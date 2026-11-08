@@ -1,0 +1,23 @@
+{
+  "name": "obsidian-openwebui-scribe",
+  "version": "1.0.0",
+  "description": "Scan and complete (scribe: ...) tags using local Ollama (RTX 4070) with OpenWebUI fallback and deep-thinking flags.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "keywords": [
+    "obsidian",
+    "obsidian-plugin",
+    "openwebui",
+    "ollama",
+    "ai",
+    "scribe"
+  ],
+  "author": "EhrenTheMan",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "obsidian": "latest"
+  }
+}
