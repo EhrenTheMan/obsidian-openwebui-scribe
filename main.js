@@ -5,7 +5,7 @@ const DEFAULT_SETTINGS = {
   localOllamaUrl: "http://localhost:11434",
   localDefaultModel: "qwen3:8b",
   localDeepModel: "qwen3.6:27b",
-  remoteUrl: "https://ai.ilovemyhonda.fit",
+  remoteUrl: "http://localhost:3000",
   remoteApiKey: "",
   remoteDefaultModel: "qwen3:8b",
   remoteDeepModel: "qwen3.6:27b",
@@ -513,12 +513,12 @@ class ScribeSettingTab extends PluginSettingTab {
     containerEl.createEl("h3", { text: "Model Routing & Execution Locations" });
 
     new Setting(containerEl)
-      .setName("Standard Tasks (8B) Execution Target")
-      .setDesc("Where fast, day-to-day notes requests run (Local RTX 4070 recommended for speed)")
+      .setName("Standard Tasks Execution Target")
+      .setDesc("Where fast, day-to-day notes requests run")
       .addDropdown((drop) =>
         drop
-          .addOption("local", "Local Ollama (RTX 4070)")
-          .addOption("remote", "Remote OpenWebUI (ai.ilovemyhonda.fit)")
+          .addOption("local", "Local Ollama")
+          .addOption("remote", "OpenWebUI")
           .setValue(this.plugin.settings.fastTarget)
           .onChange(async (val) => {
             this.plugin.settings.fastTarget = val;
@@ -531,8 +531,8 @@ class ScribeSettingTab extends PluginSettingTab {
       .setDesc("Where deep thinking tasks run when using -d, --deep, or think: flags")
       .addDropdown((drop) =>
         drop
-          .addOption("remote", "Remote OpenWebUI (ai.ilovemyhonda.fit)")
-          .addOption("local", "Local Ollama (RTX 4070)")
+          .addOption("remote", "OpenWebUI")
+          .addOption("local", "Local Ollama")
           .setValue(this.plugin.settings.deepTarget)
           .onChange(async (val) => {
             this.plugin.settings.deepTarget = val;
@@ -568,7 +568,7 @@ class ScribeSettingTab extends PluginSettingTab {
       );
 
     // --- LOCAL OLLAMA CONFIG ---
-    containerEl.createEl("h3", { text: "Local Ollama (RTX 4070)" });
+    containerEl.createEl("h3", { text: "Local Ollama" });
 
     new Setting(containerEl)
       .setName("Local Ollama URL")
@@ -629,14 +629,14 @@ class ScribeSettingTab extends PluginSettingTab {
       );
 
     // --- REMOTE OPENWEBUI CONFIG ---
-    containerEl.createEl("h3", { text: "Remote OpenWebUI (ai.ilovemyhonda.fit)" });
+    containerEl.createEl("h3", { text: "OpenWebUI" });
 
     new Setting(containerEl)
       .setName("Remote OpenWebUI URL")
       .setDesc("Offsite OpenWebUI server domain")
       .addText((text) =>
         text
-          .setPlaceholder("https://ai.ilovemyhonda.fit")
+          .setPlaceholder("http://localhost:3000")
           .setValue(this.plugin.settings.remoteUrl)
           .onChange(async (val) => {
             this.plugin.settings.remoteUrl = val;
@@ -646,7 +646,7 @@ class ScribeSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Remote OpenWebUI API Key")
-      .setDesc("API Key / Bearer Token for ai.ilovemyhonda.fit")
+      .setDesc("API key for your OpenWebUI server")
       .addText((text) => {
         text.inputEl.type = "password";
         text

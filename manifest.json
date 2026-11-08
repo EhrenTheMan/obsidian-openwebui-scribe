@@ -3,7 +3,7 @@
   "name": "OpenWebUI Scribe",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "Scan and complete (scribe: ...) tags using local Ollama (RTX 4070) with OpenWebUI fallback and deep-thinking flags.",
+  "description": "Scan and complete (scribe: ...) tags using local Ollama with OpenWebUI fallback and deep-thinking flags.",
   "author": "EhrenTheMan",
   "authorUrl": "https://github.com/EhrenTheMan",
   "isDesktopOnly": false

@@ -2,7 +2,7 @@
 
 An autonomous AI note-taking and thought-partner plugin for Obsidian.
 
-Scan and complete inline `(scribe: ...)` tags in markdown notes using a hybrid architecture: fast local inference via **Ollama** (e.g., RTX 4070 running 8B/9B models) with transparent fallback or deep-reasoning routing to **OpenWebUI** (running 27B+ models).
+Scan and complete inline `(scribe: ...)` tags in markdown notes using local **Ollama** and **OpenWebUI** services, with configurable model routing and fallback.
 
 ---
 
@@ -10,13 +10,13 @@ Scan and complete inline `(scribe: ...)` tags in markdown notes using a hybrid a
 
 - **Inline Tag Processing**: Write notes naturally and annotate with `(scribe: <query>)` to auto-expand notes in place.
 - **Smart Model Routing**:
-  - **Fast Route** (Default: Local Ollama, `qwen3.5:9b`): For definitions, rapid summaries, and concise expansions.
-  - **Deep Route** (Default: Remote OpenWebUI, `qwen3.6:27b`): For proofs, complex logic, and deep analysis.
+  - **Fast Route** (Default: Local Ollama): For definitions, rapid summaries, and concise expansions.
+  - **Deep Route** (Default: OpenWebUI): For proofs, complex logic, and deep analysis.
 - **Flag Support**:
   - `-d`, `--deep`, `deep:`, `think:` — Routes request to the deep-thinking model.
   - `-v`, `--verbose` — Request detailed, thorough explanations instead of high-density concise output.
 - **Collapsible Thinking Callouts**: Embed expandable callouts containing model thinking chains and telemetry.
-- **Hardware Telemetry**: Direct GPU metrics integration (`nvidia-smi`) reporting GPU utilization, VRAM usage, and thermals.
+- **Optional GPU Telemetry**: Reports utilization, memory usage, and temperature when supported by `nvidia-smi`.
 - **Companion CLI Tool**: Standalone Python CLI (`scribe`) to process active notes, specific files, or entire vaults from the terminal.
 
 ---
@@ -79,7 +79,7 @@ To test changes live in Obsidian without manually copying files, create a symlin
 
 ```bash
 # Example symlink command:
-ln -sfn "/home/ehren/Documents/Projects/obsidian-openwebui-scribe" "/home/ehren/Documents/Main Vault/.obsidian/plugins/obsidian-openwebui-scribe"
+ln -sfn "/path/to/obsidian-openwebui-scribe" "/path/to/vault/.obsidian/plugins/obsidian-openwebui-scribe"
 ```
 
 Then reload Obsidian or toggle the plugin off and on in Settings -> Community Plugins.
@@ -100,9 +100,11 @@ scribe scan
 # Process a specific note file
 scribe file "/path/to/note.md"
 
-# Test local Ollama and remote OpenWebUI endpoints & GPU metrics
+# Test local Ollama and OpenWebUI endpoints & optional GPU metrics
 scribe test
 ```
+
+Set `OBSIDIAN_VAULT_PATH` to your vault location to configure the CLI's default vault path. The default is `~/Documents/Obsidian`.
 
 ---
 

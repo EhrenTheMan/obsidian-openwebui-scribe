@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Obsidian Scribe CLI
-Scans and completes (scribe: ...) tags in Obsidian notes using local Ollama (RTX 4070)
-or remote OpenWebUI (ai.ilovemyhonda.fit) with deep-thinking routing, thinking text, and resource metrics.
+Scans and completes (scribe: ...) tags in Obsidian notes using local Ollama
+or OpenWebUI with deep-thinking routing, thinking text, and optional resource metrics.
 """
 
 import sys
@@ -16,7 +16,7 @@ import urllib.error
 from pathlib import Path
 
 # Paths
-DEFAULT_VAULT = Path("/home/ehren/Documents/Main Vault")
+DEFAULT_VAULT = Path(os.environ.get("OBSIDIAN_VAULT_PATH", str(Path.home() / "Documents" / "Obsidian")))
 PLUGIN_DATA_PATH = DEFAULT_VAULT / ".obsidian/plugins/obsidian-openwebui-scribe/data.json"
 CONFIG_PATH = Path.home() / ".config/obsidian-scribe/config.json"
 LOCAL_REST_API_DATA = DEFAULT_VAULT / ".obsidian/plugins/obsidian-local-rest-api/data.json"
@@ -25,7 +25,7 @@ DEFAULT_CONFIG = {
     "localOllamaUrl": "http://localhost:11434",
     "localDefaultModel": "qwen3:8b",
     "localDeepModel": "qwen3.6:27b",
-    "remoteUrl": "https://ai.ilovemyhonda.fit",
+    "remoteUrl": "http://localhost:3000",
     "remoteApiKey": "",
     "remoteDefaultModel": "qwen3:8b",
     "remoteDeepModel": "qwen3.6:27b",
@@ -508,7 +508,7 @@ Usage:
   scribe --help              Show this help message
 
 Tag Syntax:
-  (scribe: this true?)                Fast model (routed to local RTX 4070)
+  (scribe: this true?)                Fast model (routed to local Ollama)
   (scribe -d: explain recursion)      Deep model (routed to remote machine)
   (scribe --deep: write proof)        Deep model
   (scribe:think analyze argument)     Deep model

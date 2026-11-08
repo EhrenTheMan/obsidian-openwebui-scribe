@@ -2,7 +2,7 @@
   "localOllamaUrl": "http://localhost:11434",
   "localDefaultModel": "qwen3.5:9b",
   "localDeepModel": "qwen3.8:27b",
-  "remoteUrl": "https://ai.ilovemyhonda.fit",
+  "remoteUrl": "http://localhost:3000",
   "remoteApiKey": "",
   "remoteDefaultModel": "qwen3:8b",
   "remoteDeepModel": "qwen3.6:27b",
